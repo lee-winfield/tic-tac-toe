@@ -1,0 +1,19 @@
+.game-board {
+  padding: 40px;
+  border-radius: 30px;
+  background-color: khaki;
+}
+
+.cell {
+  background-color: inherit;
+  height: 140px;
+}
+.row.middle {
+  border-top: solid black 10px;
+  border-bottom: solid black 10px;
+}
+
+.cell.center {
+  border-right: solid black 10px;
+  border-left: solid black 10px;
+}
