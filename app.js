@@ -1,16 +1,16 @@
 class Game {
   constructor() {
-    this.board = {
-      top: { left: "", center: "", right: "" },
-      middle: { left: "", center: "", right: "" },
-      bottom: { left: "", center: "", right: "" },
-    }
+    this.board = [
+      [null, null, null],
+      [null, null, null],
+      [null, null, null],
+    ]
     this.currentPiece = "O"
   }
 
   placePiece(pos) {
     const row = this.board[pos.row]
-    row[pos.cell] = this.currentPiece
+    row[pos.column] = this.currentPiece
   }
 
   nextTurn() {
@@ -19,6 +19,7 @@ class Game {
 
   isGameOver() {
     // TODO
+
     return false
   }
 }
@@ -44,6 +45,7 @@ function selectCell(e) {
     // check if game is over
     if (game.isGameOver()) {
       // display winner
+      console.log("GAME OVER!!!")
       displayWinner(game.currentPiece)
     } else {
       // next turn
@@ -53,9 +55,22 @@ function selectCell(e) {
 }
 
 function getPosition(target) {
-  const cell = target.classList[1]
-  const row = target.parentElement.classList[1]
-  return { cell, row }
+  const column = columnByClassName[target.classList[1]]
+
+  const row = rowByClassName[target.parentElement.classList[1]]
+  return { column, row }
+}
+
+const columnByClassName = {
+  "left": 0,
+  "center": 1,
+  "right": 2,
+}
+
+const rowByClassName = {
+  "top": 0,
+  "middle": 1,
+  "bottom": 2,
 }
 
 function displayWinner(p) {
