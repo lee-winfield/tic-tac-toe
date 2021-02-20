@@ -1,8 +1,6 @@
-
-
 class Game {
   constructor() {
-    this.state = {
+    this.board = {
       top: { left: "", center: "", right: "" },
       middle: { left: "", center: "", right: "" },
       bottom: { left: "", center: "", right: "" },
@@ -11,13 +9,17 @@ class Game {
   }
 
   placePiece(pos) {
-    const row = this.state[pos.row]
+    const row = this.board[pos.row]
     row[pos.cell] = this.currentPiece
-    this.nextTurn()
   }
 
   nextTurn() {
     this.currentPiece = this.currentPiece == "O" ? "X" : "O"
+  }
+
+  isGameOver() {
+    // TODO
+    return false
   }
 }
 
@@ -28,14 +30,25 @@ gameBoard.addEventListener("click", selectCell)
 function selectCell(e) {
   const { target } = e
   if (e.target.innerHTML == "") {
+    // update ui
     target.innerHTML = `
       <div class="game-piece">
         ${game.currentPiece}
       </div>
     `
-    const pos = getPosition(target)
 
+    // update game state
+    const pos = getPosition(target)
     game.placePiece(pos)
+
+    // check if game is over
+    if (game.isGameOver()) {
+      // display winner
+      displayWinner(game.currentPiece)
+    } else {
+      // next turn
+      game.nextTurn()
+    }
   }
 }
 
@@ -43,4 +56,8 @@ function getPosition(target) {
   const cell = target.classList[1]
   const row = target.parentElement.classList[1]
   return { cell, row }
+}
+
+function displayWinner(p) {
+  // TODO
 }
