@@ -1,12 +1,19 @@
 .game-board {
+  min-width: 520px;
   padding: 40px;
   border-radius: 30px;
   background-color: khaki;
 }
 
+.game-piece {
+  text-align: center;
+  font-size: 80px;
+}
+
 .cell {
   background-color: inherit;
-  height: 140px;
+  height: 120px;
+  cursor: pointer;
 }
 .row.middle {
   border-top: solid black 10px;
