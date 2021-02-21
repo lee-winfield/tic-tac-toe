@@ -17,23 +17,52 @@ class Game {
     this.currentPiece = this.currentPiece == "O" ? "X" : "O"
   }
 
-  isGameOver() {
-    // TODO
+  isOver() {
+    let diagDown = "", diagUp = ""
+    let horizontals = ["", "", ""]
+    let verticals = ["", "", ""]
+    for (let m = 0; m < this.board.length; m++) {
+      const row = this.board[m]
+      for (let n = 0; n < row.length; n++) {
+        const cell = row[n]
+        if (cell !== null) {
+          // update horizontals
+          horizontals[m] = horizontals[m] + cell
 
-    return false
+          // update verticals
+          verticals[n] = verticals[n] + cell
+
+          // update diaganonals
+          if (m === n && cell) {
+            diagDown += cell
+          }
+          if ((2 - m) === n && cell !== null) {
+            diagUp += cell
+          }
+
+        }
+      }
+    }
+
+    const isWin = line => {
+      return line === "XXX" || line === "OOO"
+    }
+    return [diagDown, diagUp, ...horizontals, ...verticals].
+      reduce((acc, val) => acc || isWin(val), false)
   }
 }
 
+
 const game = new Game()
 const gameBoard = document.getElementById("game-board")
-gameBoard.addEventListener("click", selectCell)
+gameBoard.addEventListener("click", placePiece)
 
-function selectCell(e) {
+function placePiece(e) {
   const { target } = e
-  if (e.target.innerHTML == "") {
-    // update ui
+  if (e.target.innerHTML == "" && !game.isOver()) {
+    // update ui with new gamepiece
     target.innerHTML = `
-      <div class="game-piece">
+      <div class="game-piece game-piece-${game.currentPiece}">
         ${game.currentPiece}
       </div>
     `
@@ -43,9 +72,8 @@ function selectCell(e) {
     game.placePiece(pos)
 
     // check if game is over
-    if (game.isGameOver()) {
+    if (game.isOver()) {
       // display winner
-      console.log("GAME OVER!!!")
       displayWinner(game.currentPiece)
     } else {
       // next turn
@@ -55,24 +83,27 @@ function selectCell(e) {
 }
 
 function getPosition(target) {
-  const column = columnByClassName[target.classList[1]]
+  const columnByClassName = {
+    "left": 0,
+    "center": 1,
+    "right": 2,
+  }
 
+  const rowByClassName = {
+    "top": 0,
+    "middle": 1,
+    "bottom": 2,
+  }
+
+  const column = columnByClassName[target.classList[1]]
   const row = rowByClassName[target.parentElement.classList[1]]
+
   return { column, row }
 }
 
-const columnByClassName = {
-  "left": 0,
-  "center": 1,
-  "right": 2,
-}
 
-const rowByClassName = {
-  "top": 0,
-  "middle": 1,
-  "bottom": 2,
-}
 
 function displayWinner(p) {
   // TODO
+  console.log("GAME OVER!!!")
 }

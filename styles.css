@@ -8,6 +8,15 @@
 .game-piece {
   text-align: center;
   font-size: 80px;
+  font-family: "Brush Script MT";
+}
+
+.game-piece-X {
+  color: coral;
+}
+
+.game-piece-O {
+  color: darkseagreen;
 }
 
 .cell {
@@ -16,11 +25,11 @@
   cursor: pointer;
 }
 .row.middle {
-  border-top: solid black 10px;
-  border-bottom: solid black 10px;
+  border-top: solid darkslateblue 10px;
+  border-bottom: solid darkslateblue 10px;
 }
 
 .cell.center {
-  border-right: solid black 10px;
-  border-left: solid black 10px;
+  border-right: solid darkslateblue 10px;
+  border-left: solid darkslateblue 10px;
 }
