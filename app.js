@@ -115,7 +115,7 @@ function displayWinner(p) {
   const title = modal.querySelector(".modal-title")
   title.innerHTML = `The winner is ${game.currentPiece}`
   const body = modal.querySelector(".modal-body")
-  body.innerHTML = `Congratulations player ${game.currentPiece}, you destroyed your apponent 👏`
+  body.innerHTML = `Congratulations player ${game.currentPiece}, you destroyed your opponent 👏`
 }
 
 function rematch() {
