@@ -53,9 +53,11 @@ class Game {
 }
 
 
-const game = new Game()
+let game = new Game()
 const gameBoard = document.getElementById("game-board")
 gameBoard.addEventListener("click", placePiece)
+const rematchButton = document.querySelector(".rematch-button")
+rematchButton.addEventListener("click", rematch)
 
 function placePiece(e) {
   const { target } = e
@@ -104,6 +106,24 @@ function getPosition(target) {
 
 
 function displayWinner(p) {
-  // TODO
-  console.log("GAME OVER!!!")
+  const modal = document.getElementById("gameOverModal")
+  modal.classList.add("show")
+  modal.removeAttribute("aria-hidden")
+  modal.setAttribute("aria-modal", "true")
+  modal.style.display = "block"
+
+  const title = modal.querySelector(".modal-title")
+  title.innerHTML = `The winner is ${game.currentPiece}`
+  const body = modal.querySelector(".modal-body")
+  body.innerHTML = `Congratulations player ${game.currentPiece}, you destroyed your apponent 👏`
+}
+
+function rematch() {
+  const modal = document.getElementById("gameOverModal")
+  modal.style.display = "none"
+  game = new Game()
+  const cells = document.querySelectorAll(".cell")
+  for (let i = 0; i < cells.length; i++) {
+    cells[i].innerHTML = ""
+  }
 }
