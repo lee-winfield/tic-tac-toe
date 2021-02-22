@@ -1,9 +1,9 @@
-### Tic-Tac-Toe
+## Tic-Tac-Toe
 
-## Overview
+### Overview
 Tic-Tac-Toe is a toy app created for educational purposes. The app is written in vanilla Javascript in order to identify aspects of javascript to be taught within the new Intro to Javascript course in BDPA.
 
-## Prerequsites
+### Prerequsites
 - DOM Manipulation
   - document.getElementById
   - document.querySelectorAll
