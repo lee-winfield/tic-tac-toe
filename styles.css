@@ -1,8 +1,9 @@
 .game-board {
-  min-width: 520px;
+  width: 520px;
   padding: 40px;
+  margin: auto;
   border-radius: 30px;
-  background-color: khaki;
+  background-color: #0d6efd;
 }
 
 .game-piece {
@@ -11,11 +12,11 @@
 }
 
 .game-piece-X {
-  color: coral;
+  color: white;
 }
 
 .game-piece-O {
-  color: darkseagreen;
+  color: white;
 }
 
 .cell {
@@ -24,11 +25,11 @@
   cursor: pointer;
 }
 .row.middle {
-  border-top: solid darkslateblue 10px;
-  border-bottom: solid darkslateblue 10px;
+  border-top: solid white 10px;
+  border-bottom: solid white 10px;
 }
 
 .cell.center {
-  border-right: solid darkslateblue 10px;
-  border-left: solid darkslateblue 10px;
+  border-right: solid white 10px;
+  border-left: solid white 10px;
 }

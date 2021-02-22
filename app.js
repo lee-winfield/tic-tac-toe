@@ -39,11 +39,9 @@ class Game {
           if ((2 - m) === n && cell !== null) {
             diagUp += cell
           }
-
         }
       }
     }
-
     const isWin = line => {
       return line === "XXX" || line === "OOO"
     }
