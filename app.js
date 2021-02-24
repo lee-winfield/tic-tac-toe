@@ -50,6 +50,13 @@ class Game {
     return [diagDown, diagUp, ...horizontals, ...verticals].
       reduce((acc, val) => acc || isWin(val), false);
   };
+
+  isLastMove() {
+    return this.board.reduce(
+      (acc, row) => row.join("").length === 3 && acc,
+      true,
+    )
+  }
 };
 
 class UI {
@@ -65,6 +72,20 @@ class UI {
 
     const body = modal.querySelector(".modal-body");
     body.innerHTML = `Congratulations player ${winningPiece}, you destroyed your opponent 👏`;
+  }
+
+  displayTie() {
+    const modal = document.getElementById("gameOverModal");
+    modal.classList.add("show");
+    modal.removeAttribute("aria-hidden");
+    modal.setAttribute("aria-modal", "true");
+    modal.style.display = "block";
+
+    const title = modal.querySelector(".modal-title");
+    title.innerHTML = `Its a tie`;
+
+    const body = modal.querySelector(".modal-body");
+    body.innerHTML = `Its a tie`;
   }
 
   placePiece(target) {
@@ -123,6 +144,8 @@ function handleBoardClick(e) {
 
     if (game.isOver()) {
       ui.displayWinner(game.currentPiece);
+    } else if (game.isLastMove()) {
+      ui.displayTie()
     } else {
       game.nextTurn();
     };
